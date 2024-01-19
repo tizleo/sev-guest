@@ -41,6 +41,12 @@ struct options {
 	bool do_help;
 };
 
+struct sev_user_data_ext_snp_config {
+	__u64 config_address;		/* In */
+	__u64 certs_address;		/* In */
+	__u32 certs_len;		/* In */
+};
+
 void print_usage(void)
 {
 	fprintf(stderr,
