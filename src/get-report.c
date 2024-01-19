@@ -297,7 +297,7 @@ int get_report(const uint8_t *data, size_t data_size,
 	if (rc == -1) {
 		rc = errno;
 		perror("ioctl");
-		fprintf(stderr, "firmware error %llu\n", guest_req.fw_err);
+		fprintf(stderr, "firmware error %llu\n", guest_req.fw_error);
 		goto out_close;
 	}
 
@@ -378,10 +378,10 @@ int get_extended_report(const uint8_t *data, size_t data_size,
 	/* Query the size of the stored certificates */
 	errno = 0;
 	rc = ioctl(fd, SNP_GET_EXT_REPORT, &guest_req);
-	if (rc == -1 && guest_req.fw_err != 0x100000000) {
+	if (rc == -1 && guest_req.fw_error != 0x100000000) {
 		rc = errno;
 		perror("ioctl");
-		fprintf(stderr, "firmware error %#llx\n", guest_req.fw_err);
+		fprintf(stderr, "firmware error %#llx\n", guest_req.fw_error);
 		fprintf(stderr, "report error %#x\n", report_resp->status);
 		fprintf(stderr, "certs_len %#x\n", req.certs_len);
 		goto out_close;
@@ -415,7 +415,7 @@ int get_extended_report(const uint8_t *data, size_t data_size,
 		rc = errno;
 		perror("ioctl");
 		fprintf(stderr, "errno is %u\n", errno);
-		fprintf(stderr, "firmware error %#llx\n", guest_req.fw_err);
+		fprintf(stderr, "firmware error %#llx\n", guest_req.fw_error);
 		fprintf(stderr, "report error %x\n", report_resp->status);
 		goto out_free;
 	}
