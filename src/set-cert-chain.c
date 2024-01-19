@@ -41,11 +41,16 @@ struct options {
 	bool do_help;
 };
 
+/* Hacked in definitions.. */
+#define SNP_SET_EXT_CONFIG	0xA
+
 struct sev_user_data_ext_snp_config {
 	__u64 config_address;		/* In */
 	__u64 certs_address;		/* In */
 	__u32 certs_len;		/* In */
 };
+
+/* Hacked in definitions end */
 
 void print_usage(void)
 {
